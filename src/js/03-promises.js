@@ -14,7 +14,7 @@ formEl.addEventListener('submit', createPromise);
 function createPromise(e) {
   e.preventDefault();
 
-  const promis = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
 
     if (isActive) { return };
     isActive = true;
@@ -22,16 +22,18 @@ function createPromise(e) {
     let delay = Number(e.target.elements.delay.value)
   
     intervalId = setInterval(() => {
-      delay += Number(e.target.elements.step.value);
+    
       position += 1;
     
       const shouldResolve = Math.random() > 0.3;
 
       if (shouldResolve) {
-        Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`)
+       resolve(Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`))
       } else {
-        Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`)
+       reject(Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`))
       };
+
+      delay += Number(e.target.elements.step.value);
 
       if (position === Number(e.target.elements.amount.value)) {
 

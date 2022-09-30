@@ -41,7 +41,7 @@ const options = {
                 s = selectedDates[0] - b
                 const time = convertMs(s);
                 updetTimer(time)
-                if (refs.timerEl.textContent==='00:00:00:00') {
+                if (refs.timerEl.textContent==='days 00 : hours 00 : minutes 00 : seconds 00') {
                 clearInterval(IntervalId)
                 };
             }, 1000);
@@ -77,6 +77,6 @@ function convertMs(ms) {
 };
 
 function updetTimer({ days, hours, minutes, seconds }) {
-    refs.timerEl.textContent = `${days}:${hours}:${minutes}:${seconds}`
+    refs.timerEl.textContent = `days ${days} : hours ${hours} : minutes ${minutes} : seconds ${seconds}`
     console.log(refs.timerEl.textContent)
 };

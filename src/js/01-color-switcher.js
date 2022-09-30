@@ -4,6 +4,8 @@ const refs = {
     body:document.querySelector('body')
 };
 
+refs.stop.setAttribute('disabled', '');
+
 const colorBody = {
     interval: null,
     isActive: false,
@@ -15,6 +17,9 @@ const colorBody = {
         
         this.isActive = true;
 
+        refs.start.setAttribute('disabled', '');
+        refs.stop.removeAttribute('disabled');
+
         this.interval = setInterval(() => {
             refs.body.style.background = getRandomHexColor();
         }, 1000);
@@ -22,6 +27,10 @@ const colorBody = {
     },
 
     stop() {
+        
+        refs.stop.setAttribute('disabled', '');
+        refs.start.removeAttribute('disabled');
+
         clearInterval(this.interval);
         this.isActive = false;
     }
